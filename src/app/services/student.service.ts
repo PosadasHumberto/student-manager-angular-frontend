@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Student} from "../models/student";
+import {environment} from "../../environments/environment.development";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class StudentService {
 
   //attributes
-  private basicUrl : string = "http://localhost:8080/student/";
+  private basicUrl : string = environment.basicUrl;
 
   //constructor
   constructor(
