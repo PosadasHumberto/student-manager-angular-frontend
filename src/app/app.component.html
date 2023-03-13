@@ -70,7 +70,7 @@
               <i class="fa fa-pencil"></i>
             </a>
             <a
-              (click)="onOpenModal(s, 'delete')"
+              (click)="onDeleteStudent(s)"
               class="btn btn-secondary tooltips"
               data-placement="top"
               data-toggle="tooltip"
@@ -179,22 +179,22 @@
   </div>
 
   <!--edit Student modal-->
-
   <div
     class="modal fade"
-    id="updateEmployeeModal"
+    id="editStudentModal"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="employeeEditModalLabel"
+    aria-labelledby="studentEditModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5
             class="modal-title"
-            id="updateEmployeeModalLabel"
+            id="updateStudentModalLabel"
           >Edit Student {{editStudent?.name}}</h5>
           <button
+            id="closeEdit"
             type="button"
             class="close"
             data-dismiss="modal"
@@ -226,10 +226,9 @@
             <input
               type="hidden"
               ngModel="{{editStudent?.studentCode}}"
-              name="userCode"
+              name="studentCode"
               class="form-control"
-              id="userCode"
-              placeholder="Email"
+              id="studentCode"
             >
             <div class="form-group">
               <label for="email">Email Address</label>
@@ -241,12 +240,12 @@
                 placeholder="Email">
             </div>
             <div class="form-group">
-              <label for="career">Job title</label>
+              <label for="career">Career</label>
               <input
                 type="text"
                 ngModel="{{editStudent?.career}}"
-                name="career" class="form-control"
-
+                name="career"
+                class="form-control"
                 placeholder="Career">
             </div>
             <div class="form-group">
@@ -264,15 +263,14 @@
               <input
                 type="text"
                 ngModel="{{editStudent?.imgUrl}}"
-                name="imageUrl"
+                name="imgUrl"
                 class="form-control"
-                id="imageUrl"
                 placeholder="Image URL">
             </div>
             <div class="modal-footer">
               <button
+                id="closeEreaseForm"
                 type="button"
-                id=""
                 data-dismiss="modal"
                 class="btn btn-secondary"
               >Close</button>

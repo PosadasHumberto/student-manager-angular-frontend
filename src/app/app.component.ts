@@ -15,8 +15,8 @@ export class AppComponent implements OnInit{
   //attributes
   public title = 'Students Manager';
   public students : Student[];
-  public editStudent : Student;
-  public deleteStudent : Student;
+  public editStudent : Student | null;
+  public deleteStudent : Student | null;
 
   //constructor
   constructor(
@@ -59,10 +59,12 @@ export class AppComponent implements OnInit{
     }
 
     if (mode === "edit"){
-      button.setAttribute('data-target', '#editStudentModal')
+      this.editStudent = student;
+      button.setAttribute('data-target', '#editStudentModal');
     }
 
     if (mode === "delete"){
+      this.deleteStudent = student;
       button.setAttribute('data-target', '#deleteStudentModal')
     }
 
@@ -82,12 +84,38 @@ export class AppComponent implements OnInit{
       },
       (error : HttpErrorResponse) => {
         alert(error.message);
+        addForm.resetForm();
       }
     );
 
   }
 
-  onUpdateStudent(editForm : NgForm){
+  onUpdateStudent(student : Student) : void {
+    this.studentService.updateStudent(student).subscribe(
+      (response : Student) => {
+        console.log(response);
+        this.getStudents();
+        document.getElementById('closeEdit')?.click();
+      },
+      (error : HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  onDeleteStudent(student : Student) : void {
+    if(confirm("Are you sure you want to delete student: " + student.name + " ?")){
+      this.studentService.deleteStudent(student.id).subscribe(
+        (response : void) => {
+          console.log(response);
+          this.getStudents();
+        },
+        (error : HttpErrorResponse) => {
+          alert(error.message)
+        }
+      )
+    }
 
   }
+
 }

@@ -32,7 +32,7 @@ export class StudentService {
   }
 
   public deleteStudent(id : number) : Observable<void> {
-    return this.http.delete<void>(this.basicUrl + `/${id}`);
+    return this.http.delete<void>(this.basicUrl + `delete/${id}`);
   }
 
 }
