@@ -118,4 +118,26 @@ export class AppComponent implements OnInit{
 
   }
 
+  public searchStudent(key : string) : void {
+    console.log(key);
+    const results : Student[] = []
+    this.students.forEach(
+      s => {
+        if (
+          s.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+          s.studentCode.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+          s.career.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+          s.email.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+          s.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        ){
+          results.push(s);
+          if(results.length === 0 || !key){
+            this.getStudents();
+          }
+        }
+      }
+    )
+    this.students = results;
+  }
+
 }

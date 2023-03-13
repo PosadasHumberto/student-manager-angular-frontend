@@ -35,6 +35,9 @@
         id="searchName"
         name="key"
         placeholder="Search Students"
+        (ngModelChange) = "searchStudent(key.value)"
+        #key="ngModel"
+        ngModel
       >
     </form>
   </div>
@@ -287,7 +290,7 @@
   </div>
 
   <!--No students notification-->
-  <div class="col col-lg-12 col-md-12 col-xl-12">
+  <div *ngIf="students?.length == 0" class="col col-lg-12 col-md-12 col-xl-12">
     <div class="alert alert-info" role="alert">
       <h4 class="alert-heading">No Students!</h4>
       <p>No Students were found</p>
