@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Student} from "../models/student";
-import {environment} from "../../environments/environment.development";
 
 @Injectable()
 export class StudentService {
 
   //attributes
-  //private basicUrl : string = environment.basicUrl;
   private basicUrl : string = "https://student-manager-spring-backend.herokuapp.com/student/";
 
   //constructor
