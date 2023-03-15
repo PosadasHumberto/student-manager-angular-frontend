@@ -8,7 +8,8 @@ import {environment} from "../../environments/environment.development";
 export class StudentService {
 
   //attributes
-  private basicUrl : string = environment.basicUrl;
+  //private basicUrl : string = environment.basicUrl;
+  private basicUrl : string = "https://student-manager-spring-backend.herokuapp.com/student/";
 
   //constructor
   constructor(
